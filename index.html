@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شمس الخليج - عطور النيش الفاخرة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700&family=Cairo:wght@300;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        /* ==================== المتغيرات والتأسيس ==================== */
+        :root {
+            --bg-dark: #080808;
+            --bg-card: rgba(255, 255, 255, 0.02);
+            --bg-overlay: rgba(15, 15, 15, 0.95);
+            --text-gold: #D4AF37;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+            --font-main: 'Tajawal', sans-serif;
+            --font-head: 'Cairo', sans-serif;
+            --transition: cubic-bezier(0.4, 0, 0.2, 1);
+            --wa-green: #25D366;
+            --tg-blue: #0088cc;
+        }
+
+        * { box-sizing: border-box; outline: none; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* ==================== 1. الهيدر السينمائي ==================== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('S1.jpg') no-repeat center center/cover;
+            filter: brightness(0.35);
+            transform: scale(1);
+            animation: slowZoom 25s infinite alternate;
+            z-index: -1;
+        }
+
+        @keyframes slowZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.15); }
+        }
+
+        .hero-content { z-index: 2; padding: 20px; }
+
+        .hero h1 {
+            font-family: var(--font-head);
+            font-size: 5.5rem;
+            font-weight: 800;
+            margin: 0;
+            background: linear-gradient(to bottom, #fff, #bfbfbf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            animation: fadeInText 1.5s ease-out forwards 0.5s;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-gold);
+            letter-spacing: 2px;
+            margin-top: 10px;
+            opacity: 0;
+            animation: fadeInText 1.5s ease-out forwards 1s;
+        }
+
+        @keyframes fadeInText {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .scroll-indicator {
+            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+            color: rgba(255,255,255,0.4); font-size: 1.5rem; animation: bounce 2s infinite;
+        }
+
+        /* ==================== 2. قسم "من نحن" ==================== */
+        .brand-story {
+            padding: 100px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+            opacity: 0; transform: translateY(50px);
+            transition: 1.5s ease;
+        }
+        .brand-story.visible { opacity: 1; transform: translateY(0); }
+
+        .brand-story h2 {
+            font-family: var(--font-head);
+            font-size: 3rem;
+            color: var(--text-gold);
+            margin-bottom: 40px;
+        }
+
+        .brand-story p {
+            font-size: 1.2rem; color: #ccc; line-height: 2.2; margin-bottom: 20px;
+        }
+        
+        .story-features {
+            display: flex; justify-content: center; gap: 40px; margin-top: 50px; flex-wrap: wrap;
+        }
+        .story-item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .story-item i { font-size: 2rem; color: var(--text-gold); }
+        .story-item span { font-size: 1rem; color: #fff; }
+
+        .separator {
+            width: 1px; height: 100px;
+            background: linear-gradient(to bottom, transparent, var(--text-gold), transparent);
+            margin: 60px auto;
+        }
+
+        /* ==================== 3. الأقسام الدائرية ==================== */
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 20px 100px; }
+
+        .section-header {
+            text-align: center; margin-bottom: 60px;
+        }
+        .section-header h2 { font-size: 2.5rem; font-family: var(--font-head); color: #fff; }
+        .section-header span { color: var(--text-gold); font-size: 1rem; letter-spacing: 3px; text-transform: uppercase; }
+
+        .grid-circles {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 50px;
+        }
+
+        .cat-circle {
+            width: 250px; height: 250px;
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid rgba(255,255,255,0.1);
+            transition: 0.5s var(--transition);
+        }
+        
+        .cat-circle img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: 0.5s; filter: grayscale(100%);
+        }
+        
+        .cat-text {
+            position: absolute; inset: 0;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(2px);
+            opacity: 1; transition: 0.5s;
+        }
+        .cat-text h3 { font-size: 1.5rem; color: #fff; font-family: var(--font-head); text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+
+        .cat-circle:hover { transform: scale(1.05); border-color: var(--text-gold); box-shadow: 0 0 30px rgba(212,175,55,0.2); }
+        .cat-circle:hover img { filter: grayscale(0%); transform: scale(1.1); }
+        .cat-circle:hover .cat-text { background: rgba(0,0,0,0.1); backdrop-filter: blur(0); }
+
+        /* ==================== 4. المنتجات ==================== */
+        .grid-products {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px;
+        }
+
+        .prod-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.4s; position: relative;
+            padding: 20px; border-radius: 8px;
+        }
+        
+        .img-wrapper {
+            height: 400px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px; position: relative;
+        }
+        
+        .prod-card img {
+            width: 100%; height: 100%; 
+            object-fit: contain;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+            transition: transform 0.6s var(--transition);
+        }
+        .prod-card:hover { border-color: rgba(212, 175, 55, 0.3); transform: translateY(-5px); }
+        .prod-card:hover img { transform: scale(1.08); }
+
+        .info-row { text-align: center; margin-bottom: 15px; }
+        .prod-card h3 { font-size: 1.2rem; color: #fff; margin-bottom: 8px; }
+        .prod-card .price { font-size: 1.1rem; color: var(--text-gold); font-weight: bold; }
+
+        .actions { display: flex; gap: 10px; }
+        .btn-main {
+            background: transparent; border: 1px solid rgba(255,255,255,0.2);
+            color: #fff; padding: 12px 0; cursor: pointer; flex: 1; font-family: var(--font-main); transition: 0.3s;
+        }
+        .btn-main:hover { background: #fff; color: #000; }
+        
+        .btn-gold {
+            background: var(--text-gold); color: #000; border: none; font-weight: bold;
+        }
+        .btn-gold:hover { background: #b5922b; color: #fff; }
+
+        /* ==================== 5. الفوتر التفصيلي ==================== */
+        footer {
+            background: #0f0f0f; border-top: 1px solid #222;
+            padding: 80px 20px 40px; margin-top: 50px;
+        }
+        
+        .footer-grid {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px; text-align: right;
+        }
+
+        .footer-col h4 { color: var(--text-gold); font-size: 1.4rem; margin-bottom: 25px; font-family: var(--font-head); }
+        .footer-col p { color: #888; font-size: 0.95rem; margin-bottom: 15px; }
+        
+        .contact-list div { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; color: #ccc; }
+        .contact-list i { color: var(--text-gold); width: 20px; text-align: center; }
+
+        .socials { display: flex; gap: 15px; margin-top: 20px; }
+        .socials a {
+            width: 40px; height: 40px; border: 1px solid #333;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; text-decoration: none; transition: 0.3s; border-radius: 50%;
+        }
+        .socials a:hover { background: var(--text-gold); color: #000; border-color: var(--text-gold); }
+
+        .call-btn {
+            display: block; width: fit-content; margin-top: 20px;
+            background: #fff; color: #000; padding: 10px 25px;
+            text-decoration: none; font-weight: bold; border-radius: 30px;
+            transition: 0.3s;
+        }
+        .call-btn:hover { background: var(--text-gold); }
+
+        .copyright { text-align: center; margin-top: 60px; padding-top: 20px; border-top: 1px solid #1a1a1a; color: #555; font-size: 0.8rem; }
+
+        /* ==================== عناصر إضافية والعداد ==================== */
+        #products-area { display: none; margin-top: 50px; }
+        
+        /* زر السلة العائم - يسار */
+        .cart-float {
+            position: fixed; bottom: 30px; left: 30px;
+            width: 60px; height: 60px; background: #000;
+            display: flex; align-items: center; justify-content: center;
+            border: 2px solid var(--text-gold); border-radius: 50%;
+            cursor: pointer; z-index: 1000; transition: 0.3s; color: var(--text-gold); font-size: 1.2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        }
+        .cart-float:hover { background: var(--text-gold); color: #000; transform: scale(1.1); }
+        .badge { position: absolute; top: -5px; right: -5px; background: #fff; color: #000; font-size: 0.8rem; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+
+        /* زر الواتساب العائم - يمين */
+        .wa-float {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 65px; height: 65px; background: var(--wa-green);
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+            cursor: pointer; z-index: 1000; transition: 0.3s; color: #fff; font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            text-decoration: none;
+            animation: pulse-wa 2s infinite;
+        }
+
+        /* النوافذ المنبثقة */
+        .overlay { position: fixed; inset: 0; z-index: 9999; background: var(--bg-overlay); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; }
+        .overlay.active { display: flex; animation: fadeIn 0.3s; }
+        
+        .popup-box { 
+            background: #111; border: 1px solid #333; width: 95%; max-width: 500px; 
+            padding: 0; position: relative; border-radius: 16px; overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+
+        /* ==================== تصميم السلة المطور ==================== */
+        .cart-header {
+            background: #1a1a1a; padding: 20px; text-align: center; border-bottom: 1px solid #333;
+        }
+        .cart-header h3 { color: #fff; margin: 0; font-family: var(--font-head); }
+        
+        .cart-body { padding: 20px; max-height: 70vh; overflow-y: auto; }
+
+        .cart-item-card {
+            display: flex; align-items: center; gap: 15px;
+            background: rgba(255,255,255,0.03);
+            padding: 10px; border-radius: 10px; margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .cart-item-img {
+            width: 70px; height: 70px; border-radius: 8px; overflow: hidden; background: #000;
+        }
+        .cart-item-img img { width: 100%; height: 100%; object-fit: contain; }
+        
+        .cart-item-details { flex: 1; }
+        .cart-item-title { font-size: 0.95rem; color: #fff; margin-bottom: 5px; font-weight: bold; }
+        .cart-item-price { font-size: 0.85rem; color: var(--text-gold); }
+        .cart-item-qty { font-size: 0.85rem; color: #888; margin-top: 2px; }
+
+        .cart-item-remove {
+            color: #ff4757; cursor: pointer; padding: 10px; font-size: 1.1rem;
+            transition: 0.3s; opacity: 0.7;
+        }
+        .cart-item-remove:hover { opacity: 1; transform: scale(1.1); }
+
+        /* نموذج إتمام الطلب */
+        .checkout-section { border-top: 1px solid #333; padding-top: 20px; margin-top: 10px; }
+        
+        .form-group { position: relative; margin-bottom: 20px; }
+        .form-input {
+            width: 100%; background: #000; border: 1px solid #333;
+            color: #fff; padding: 15px; border-radius: 8px;
+            font-family: inherit; transition: 0.3s;
+        }
+        .form-input:focus { border-color: var(--text-gold); box-shadow: 0 0 10px rgba(212,175,55,0.1); }
+        
+        .total-row {
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(212,175,55,0.1); padding: 15px; border-radius: 8px;
+            margin-bottom: 20px; border: 1px solid rgba(212,175,55,0.2);
+        }
+        .total-label { font-size: 1.1rem; color: #fff; font-weight: bold; }
+        .total-amount { font-size: 1.3rem; color: var(--text-gold); font-family: var(--font-head); }
+
+        .gps-btn {
+            background: rgba(255,255,255,0.05); color: #aaa; border: 1px dashed #555;
+            width: 100%; padding: 12px; border-radius: 8px; margin-bottom: 15px;
+            cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .gps-btn:hover { border-color: var(--text-gold); color: #fff; }
+
+        .checkout-btn {
+            background: var(--tg-blue); color: #fff; width: 100%; padding: 16px;
+            border: none; border-radius: 8px; font-weight: bold; font-size: 1.1rem;
+            cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .checkout-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        /* عداد الكمية */
+        .qty-selector {
+            display: flex; align-items: center; justify-content: center;
+            gap: 20px; margin: 25px 0;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 10px 20px; border-radius: 50px;
+            width: fit-content; margin-left: auto; margin-right: auto;
+            background: rgba(255,255,255,0.02);
+        }
+        .qty-btn {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(255,255,255,0.1); color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: 0.3s; font-size: 1.2rem;
+            user-select: none;
+        }
+        .qty-btn:hover { background: var(--text-gold); color: #000; }
+        .qty-display {
+            font-size: 1.8rem; font-weight: bold; color: var(--text-gold);
+            min-width: 40px; font-family: var(--font-head);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1>شمس الخليج</h1>
+            <p>حيث تجتمع الفخامة والأصالة</p>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <section class="brand-story" id="about-section">
+        <div class="separator"></div>
+        <h2>إرثٌ من العطور</h2>
+        <p>
+            منذ تأسيس "شمس الخليج"، أخذنا على عاتقنا مهمة إعادة تعريف مفهوم الفخامة في عالم العطور. 
+               كل زجاجة لدينا هي نتاج رحلة طويلة من البحث عن 
+            أندر المكونات الطبيعية حول العالم.
+        </p>
+        <div class="story-features">
+            <div class="story-item"><i class="fas fa-flask"></i><span>زيوت نادرة</span></div>
+            <div class="story-item"><i class="fas fa-gem"></i><span>جودة ملكية</span></div>
+            <div class="story-item"><i class="fas fa-leaf"></i><span>مكونات طبيعية</span></div>
+        </div>
+        <div class="separator"></div>
+    </section>
+
+    <div class="container">
+        <div class="section-header">
+            <h2>مجموعاتنا</h2>
+            <span>تصفح حسب الفئة</span>
+        </div>
+        <div class="grid-circles" id="sections-container"></div>
+    </div>
+
+    <div class="container" id="products-area">
+        <div class="section-header">
+            <h2 id="current-category-title">المنتجات</h2>
+            <span>اختياراتنا المميزة</span>
+        </div>
+        <div class="grid-products" id="products-container"></div>
+    </div>
+
+    <div class="cart-float" onclick="openCartModal()">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="badge" id="cart-count">0</span>
+    </div>
+
+    <div class="overlay" id="notes-overlay">
+        <div class="popup-box" style="padding: 40px; text-align:center;">
+            <span onclick="closeAllPopups()" style="position:absolute; top:15px; left:15px; cursor:pointer; font-size:1.5rem; color:#666;">×</span>
+            <h3 style="color:var(--text-gold); margin-bottom:20px; font-family:var(--font-head);"> مكونات العطر</h3>
+            <div id="notes-content" style="line-height:2.2; color:#ccc; text-align: justify; font-size: 1.1rem; padding: 0 10px;"></div>
+        </div>
+    </div>
+
+    <div class="overlay" id="qty-overlay">
+        <div class="popup-box" style="padding: 40px; text-align:center;">
+            <span onclick="closeAllPopups()" style="position:absolute; top:15px; left:15px; cursor:pointer; font-size:1.5rem; color:#666;">×</span>
+            <h3 id="qty-prod-name" style="margin-bottom:10px; color:#fff;"></h3>
+            <p id="qty-prod-price" style="color:var(--text-gold); margin-bottom:20px; font-weight:bold; font-size:1.2rem;"></p>
+            <div class="qty-selector">
+                <div class="qty-btn" onclick="updateQty(-1)">-</div>
+                <div class="qty-display" id="qty-display-num">1</div>
+                <div class="qty-btn" onclick="updateQty(1)">+</div>
+            </div>
+            <button class="btn-main btn-gold" onclick="confirmAddToCart()" style="width:100%; border-radius:8px;">إضافة للسلة</button>
+        </div>
+    </div>
+
+    <div class="overlay" id="cart-overlay">
+        <div class="popup-box">
+            <div class="cart-header">
+                <h3>سلة المشتريات</h3>
+                <span onclick="closeAllPopups()" style="position:absolute; top:20px; left:20px; cursor:pointer; font-size:1.5rem; color:#888;">×</span>
+            </div>
+            <div class="cart-body">
+                <div id="empty-cart-view" style="display:none; text-align:center; padding:30px;">
+                    <i class="fas fa-shopping-basket" style="font-size:3rem; color:#333; margin-bottom:20px;"></i>
+                    <p style="color:#888;">السلة فارغة حالياً</p>
+                </div>
+
+                <div id="full-cart-view" style="display:none;">
+                    <div id="cart-items-list"></div>
+                    <div class="checkout-section">
+                        <div class="total-row">
+                            <span class="total-label">المجموع الكلي:</span>
+                            <span class="total-amount" id="cart-grand-total">0</span>
+                        </div>
+                        <form id="checkout-form" onsubmit="event.preventDefault(); sendToTelegram();">
+                            <div class="form-group"><input type="text" id="cust-name" class="form-input" placeholder="الاسم الكامل" required></div>
+                            <div class="form-group"><input type="tel" id="cust-phone" class="form-input" placeholder="رقم الهاتف" required></div>
+                            <button type="button" onclick="getGPSLocation()" id="btn-gps" class="gps-btn"><i class="fas fa-map-marker-alt"></i> تحديد موقعي تلقائياً (GPS)</button>
+                            <div class="form-group"><input type="text" id="cust-addr" class="form-input" placeholder="العنوان بالتفصيل" required></div>
+                            <button type="submit" id="submit-btn" class="checkout-btn"><i class="fab fa-telegram-plane"></i> إرسال الطلب الآن</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>شمس الخليج</h4>
+                <p>وجهتكم الأولى لعطور النيش الفاخرة والتركيبات الخاصة.</p>
+                <div class="socials">
+                    <a href="https://www.instagram.com/shams_alkhaleej11" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/9647833085351" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>تواصل معنا</h4>
+                <div class="contact-list">
+                    <div><i class="fas fa-map-marker-alt"></i> المنصور البيجية قرب مجمع المنصور ستي</div>
+                    <div><i class="fas fa-phone-alt"></i> 07833085351</div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">© 2026 شمس الخليج. جميع الحقوق محفوظة.</div>
+    </footer>
+
+    <script>
+        // دالة تعريف البيانات
+        const sectionsDB = [];
+        const productsDB = [];
+        let cart = [];
+        let tempProduct = {};
+        let userLocationLink = "";
+        let currentQty = 1;
+
+        // إعدادات التلجرام الخاصة بك
+        const TG_TOKEN = "8151206230:AAHxBbHEJNSp8707X3lOC8oQ5b3UNpVHHdU";
+        const TG_CHAT_ID = "8463549715";
+
+        function add_section(id, title, img) { sectionsDB.push({id, title, img}); }
+        function add_product(cat, name, price, img, notes, meme = "") { productsDB.push({cat, name, price, img, notes, meme}); }
+
+        // إضافة الأقسام
+        add_section('ibrahim', 'إبراهيم القرشي', 't.jpg');
+        add_section('assaf', 'عطور عساف', 't1.jpg');
+        add_section('laverna', 'لافيرنا', 't2.jpg');
+        add_section('offers', 'عروض حصرية', 's4.jpg');
+
+// ==================== منتجات إبراهيم القرشي ====================
+add_product('ibrahim', 'بلو دايموند - اكوا 150 مل', 50000, 'M1.jpg', 'التركيبة العطرية: برغموت ونفحات مائية وزعفران. قلب العطر إكليل الجبل ويلانغ يلانغ وحمضيات. قاعدة العطر بخور ومسك وباتشولي.', '');
+add_product('ibrahim', 'بلو دايموند - اكوا 200 مل', 65000, 'M2.jpg', 'التركيبة العطرية: برغموت ونفحات مائية وزعفران. قلب العطر إكليل الجبل ويلانغ يلانغ وحمضيات. قاعدة العطر بخور ومسك وباتشولي.', '');
+add_product('ibrahim', 'بنك دايموند - ساكورا 150 مل', 55000, 'M3.jpg', 'مقدمة العطر زهرة الفاوانيا وزهرة البرتقال وماندارين. قاعدة العطر خشب الصندل والمسك الأبيض وعنبر.', '');
+add_product('ibrahim', 'بنك دايموند - ساكورا 200 مل', 70000, 'M4.jpg', 'مقدمة العطر زهرة الفاوانيا وزهرة البرتقال وماندارين. قاعدة العطر خشب الصندل والمسك الأبيض وعنبر.', '');
+add_product('ibrahim', 'كولينان دايموند - آيرس 150 مل', 50000, 'M5.jpg', 'مقدمة العطر جريب فروت وأناناس. قاعدة العطر خشب الأرز وطحلب السنديان وصنوبر وزهرة السوسن.', '');
+add_product('ibrahim', 'كولينان دايموند - آيرس 200 مل', 65000, 'M6.jpg', 'مقدمة العطر جريب فروت وأناناس. قاعدة العطر خشب الأرز وطحلب السنديان وصنوبر وزهرة السوسن.', '');
+add_product('ibrahim', 'بلاك دايموند - بخور 150 مل', 50000, 'M7.jpg', 'مقدمة العطر نفحات مائية والبتولا والكشمش الأسود. قاعدة العطر عنبر وجلد وعود.', '');
+add_product('ibrahim', 'بلاك دايموند - بخور 200 مل', 65000, 'M8.jpg', 'مقدمة العطر نفحات مائية والبتولا والكشمش الأسود. قاعدة العطر عنبر وجلد وعود.', '');
+add_product('ibrahim', 'بلاك كاربون دايموند 150 مل', 50000, 'M9.jpg', 'مقدمة العطر البرغموت. قلب العطر الورد والتفاح والباتشولي. قاعدة العطر خشب الصندل والمسك والبخور والعود.', '');
+add_product('ibrahim', 'جري بيل دايموند 150 مل', 50000, 'M10.jpg', 'مقدمة العطر نفحات مائية والتوت البري وصمغ. قلب العطر ياسمين وباتشولي وورد.', '');
+add_product('ibrahim', 'نود كورال دايموند 150 مل', 50000, 'M11.jpg', 'مقدمة العطر البرغموت والتفاح والزعفران. قاعدة العطر الفانيليا والعنبر والكشميران.', '');
+add_product('ibrahim', 'بيربل هارت دايموند 150 مل', 50000, 'M12.jpg', 'مقدمة العطر زهر البرتقال والكمثرى والفانيليا. قاعدة العطر خشب الكشمير والأرز والباتشولي.', '');
+add_product('ibrahim', 'وايت ريجنت دايموند 150 مل', 50000, 'M13.jpg', 'مقدمة العطر التين والهيل والشاي وخشب الصندل. قاعدة العطر تونكا وباتشولي وفانيليا.', '');
+add_product('ibrahim', 'ايمارلد سول دايموند 150 مل', 50000, 'M14.jpg', 'مقدمة العطر البرغموت والمندرين والمسك الأبيض. قاعدة العطر فانيليا وعنبر.', '');
+add_product('ibrahim', 'دوز روز توباكو 75 مل', 35000, 'M15.jpg', 'مقدمة العطر الورد والبخور والزعفران والقرنفل. قاعدة العطر المسك والتونكا والفانيليا والتبغ.', '');
+add_product('ibrahim', 'دوز مسك عسل 75 مل', 35000, 'M16.jpg', 'مقدمة العطر الزعفران والعسل والبرتقال. قاعدة العطر الفانيليا والتبغ والمسك.', '');
+add_product('ibrahim', 'دوز سبايسي عود 75 مل', 35000, 'M17.jpg', 'مقدمة العطر العود والزهور البيضاء. قاعدة العطر الياسمين ونجيل الهند والمسك والعود.', '');
+add_product('ibrahim', 'دوز سيتروس عنبر 75 مل', 35000, 'M18.jpg', 'مقدمة العطر إبرة الراعي والخزامى والحمضيات. قاعدة العطر فول التونكا ونجيل الهند والعنبر.', '');
+add_product('ibrahim', 'التوباكو الجمايكي 100 مل', 60000, 'M19.jpg', 'مقدمة العطر عنبر وباتشولي. قلب العطر خشب الأرز وعود وتبغ جامايكي.', '');
+add_product('ibrahim', 'اربيان توباكو 200 مل', 75000, 'M20.jpg', 'مقدمة العطر التوباكو العربي وزهرة السوسن وزعفران. قاعدة العطر مسك وعنبر وباتشولي وقهوة.', '');
+add_product('ibrahim', 'التوباكو اليوناني 200 مل', 75000, 'M21.jpg', 'مقدمة العطر نرجس وفاكهة الليتشي وزهور. قاعدة العطر التوباكو اليوناني ومسك والفاوانيا.', '');
+add_product('ibrahim', 'التوباكو اليوناني 100 مل', 60000, 'M22.jpg', 'مقدمة العطر نرجس وفاكهة الليتشي وزهور. قاعدة العطر التوباكو اليوناني ومسك والفاوانيا.', '');
+add_product('ibrahim', 'التوباكو الاسباني 100 مل', 60000, 'M23.jpg', 'مقدمة العطر نفحات مائية وزعفران وحبوب التونكا. قاعدة العطر زهرة السوسن وأخشاب.', '');
+add_product('ibrahim', 'التوباكو الفرنسي 200 مل', 75000, 'M24.jpg', 'مقدمة العطر البرتقال الأحمر وتفاح أخضر. قاعدة العطر خشب الغاياك ولبان وزهرة السوسن.', '');
+add_product('ibrahim', 'التوباكو البرازيلي 200 مل', 70000, 'M25.jpg', 'مقدمة العطر البرغموت واللافندر والفلفل الوردي. قاعدة العطر جلود وباتشولي وفيتيفر.', '');
+add_product('ibrahim', 'التوباكو البرازيلي 100 مل', 60000, 'M26.jpg', 'مقدمة العطر البرغموت واللافندر والفلفل الوردي. قاعدة العطر جلود وباتشولي وفيتيفر.', '');
+add_product('ibrahim', 'التوباكو الكوبي 100 مل', 60000, 'M27.jpg', 'مقدمة العطر كاكاو وتبغ كوبي. قاعدة العطر عسل وجوز الهند.', '');
+add_product('ibrahim', 'التوباكو المكسيكي 100 مل', 60000, 'M28.jpg', 'مقدمة العطر خشب الأرز وشوكولاتة داكنة. قاعدة العطر عنبر وتبغ مكسيكي وورود.', '');
+add_product('ibrahim', 'باقة سمر اوشن', 125000, 'M29.jpg', 'أوشن ويسبر + سن رايز ميلودي + ريد كورال + 3 عطور ميني.', 'باقة التوفير');
+add_product('ibrahim', 'باقة سمر بريز', 125000, 'M30.jpg', 'سي بريز + تشيسنق ويفز + ريفييرا سنسيت + 3 عطور ميني.', 'باقة التوفير');
+add_product('ibrahim', 'سن رايز ميلودي 100 مل', 45000, 'M31.jpg', 'زيت اليوسفي وزيت البرتقال المر ولافندر وفانيلا.', '');
+add_product('ibrahim', 'ريد كورال 100 مل', 45000, 'M32.jpg', 'يوسفي وكزبرة وخوخ وياسمين وورد ومسك أبيض.', '');
+add_product('ibrahim', 'اوشن ويسبر 100 مل', 45000, 'M33.jpg', 'يوسفي وكزبرة وخوخ وياسمين وورد ومسك أبيض.', '');
+add_product('ibrahim', 'ريفييرا سن سيت 100 مل', 45000, 'M34.jpg', 'يوسفي وجريب فروت ونعناع وقرفة وجلد وعنبر.', '');
+add_product('ibrahim', 'تشايسنج ويفز 100 مل', 45000, 'M35.jpg', 'برغموت وهيل وخزامى وفانيلا وحبوب التونكا.', '');
+add_product('ibrahim', 'سي بريز 100 مل', 45000, 'M36.jpg', 'ورد دمشقي وخشب الصندل وكشميران وعنبر ومسك.', '');
+add_product('ibrahim', 'بلاس روز 75 مل', 45000, 'M37.jpg', 'الورد والزعفران وتوت العليق والياسمين والفانيليا والمسك.', '');
+add_product('ibrahim', 'بلاس روز 150 مل', 60000, 'M38.jpg', 'الورد والزعفران وتوت العليق والياسمين والفانيليا والمسك.', '');
+add_product('ibrahim', 'أميثست خزام 75 مل', 45000, 'M39.jpg', 'اللافندر والزهور والنعناع والجلد والليمون والبرغموت.', '');
+add_product('ibrahim', 'تركواز فيتيفر 75 مل', 45000, 'M40.jpg', 'الزنجبيل والليمون والفلفل الأسود ونجيل الهند وباتشولي.', '');
+add_product('ibrahim', 'سترين عنبر 75 مل', 45000, 'M41.jpg', 'الزعتر وأوراق خضراء وزعفران وفواكه وياسمين وجلد.', '');
+add_product('ibrahim', 'سفاير لذر 75 مل', 45000, 'M42.jpg', 'الحمضيات وتوت العرعر والفلفل الوردي والجلد.', '');
+add_product('ibrahim', 'سفاير لذر 150 مل', 60000, 'M43.jpg', 'الحمضيات وتوت العرعر والفلفل الوردي والجلد.', '');
+
+// ==================== منتجات لافيرنا (Laverna) ====================
+add_product('laverna', 'ميني لافيرن - الحديقة الصغرى', 55000, 'C1.jpg', 'مجموعة 5 عطور ميني مميزة للإهداء.', 'مجموعة السفر');
+add_product('laverna', 'بلو لافيرن بخور 200 مل', 100000, 'C2.jpg', 'برغموت وأوراق البنفسج وتوت العليق وباتشولي وبنزوين.', '');
+add_product('laverna', 'لادور بخور 200 مل', 100000, 'C3.jpg', 'الماندرين والبنفسج والباتشولي والسوسن وخشب الغاياك.', '');
+add_product('laverna', 'مس لافيرن لحقيبتك', 90000, 'C4.jpg', 'زهرة البرتقال وتوت العليق والورد والمسك والتونكا.', '');
+add_product('laverna', 'سيت ليجند (عطر + معطر جسم)', 100000, 'C5.jpg', 'الأناناس والمندرين والفلفل الوردي والعنبر والمسك.', 'للرجال');
+add_product('laverna', 'مجموعة مس لافيرن قاردن', 140000, 'C6.jpg', 'صندوق فخم يحتوي على عطر كبير وعطر شعر ووشاح.', 'بوكس فخم');
+add_product('laverna', 'مجموعة سينس (حقيبة جورجينا)', 100000, 'C7.jpg', 'الفلفل الوردي والكمثرى والورد والباتشولي والفانيليا.', '');
+add_product('laverna', 'مجموعة بلو لافيرن', 110000, 'C8.jpg', 'ليمون إيطالي وتفاح وفلفل وردي وباتشولي وخشب صندل.', '');
+add_product('laverna', 'مجموعة سينس فور ايفر', 105000, 'C9.jpg', 'ثلاثة عطور (جسم، شعر، حقيبة) بمزيج الكاكاو والباتشولي.', '');
+
+// ==================== منتجات عساف ====================
+add_product('assaf', 'المجموعة المليونية', 125000, 'N1.jpg', 'أروقيت الخطير + أروقيت كولد + أروقيت كوميت.', 'بكج التوفير');
+add_product('assaf', 'قولت ديزرت', 99000, 'N2.jpg', 'جريس اريك + نوبل + وايلد كولت توباكو.', 'بكج التوفير');
+add_product('assaf', 'مجموعة أورا بيكاسوس', 115000, 'N3.jpg', 'أروقيت أورا + بلو + خطير + كوميت + أومو + بخور.', 'مجموعة شاملة');
+add_product('assaf', 'بكج عساف بيقاسوس', 89000, 'N4.jpg', 'بيقاسوس وايلد + بخور + بورينو 100مل.', 'بكج خاص');
+add_product('assaf', 'بكج مسك عساف', 109000, 'N5.jpg', '4 عطور مسك منوعة (كاردن، ياسمين، فلور).', 'عشاق المسك');
+add_product('assaf', 'اروقيت بنك 200ml', 59000, 'N8.jpg', 'زهر النارنج، زهرة البرتقال، اللوز، المسك.', 'نسائي');
+add_product('assaf', 'دانجرس (Dangerous)', 59000, 'N9.jpg', 'البرتقال، البرغموت، الفلفل الوردي، الخوخ والعنبر.', 'فخامة ورقي');
+add_product('assaf', 'توباكو جام 50', 59000, 'N28.jpg', 'عطر بتركيز زيت 50% لثبات يدوم 3 أيام.', 'تركيز 50%');
+
+// ==================== قسم العروض الحصرية ====================
+add_product('offers', 'BLACK CARBON DIAMOND', 50000, 'F1.jpg', 'عطر فاخر من مجموعة دايموند.', '');
+add_product('offers', 'PURPLE HEART DIAMOND', 50000, 'F2.jpg', 'عطر فاخر من مجموعة دايموند.', '');
+add_product('offers', 'GREY PEARL DIAMOND', 50000, 'F3.jpg', 'عطر فاخر من مجموعة دايموند.', '');
+add_product('offers', 'NUDE CORAL DIAMOND BOX', 95000, 'F13.jpg', 'بوكس حصري يجمع الفخامة والجمال.', 'عرض خاص');
+add_product('offers', 'Gray Box', 95000, 'F14.jpg', 'بوكس حصري من شمس الخليج.', 'عرض خاص');
+add_product('offers', 'Experience luxury', 115000, 'F17.jpg', 'تجربة الرفاهية الكاملة في بكج واحد.', 'VIP');
+        // الوظائف البرمجية
+        window.onload = function() {
+            const container = document.getElementById('sections-container');
+            sectionsDB.forEach(sec => {
+                container.innerHTML += `
+                    <div class="cat-circle animate__animated animate__zoomIn" onclick="loadProducts('${sec.id}', '${sec.title}')">
+                        <img src="${sec.img}" alt="${sec.title}">
+                        <div class="cat-text"><h3>${sec.title}</h3></div>
+                    </div>`;
+            });
+
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+            }, { threshold: 0.3 });
+            obs.observe(document.getElementById('about-section'));
+        };
+
+        function loadProducts(catId, catTitle) {
+            const area = document.getElementById('products-area');
+            const container = document.getElementById('products-container');
+            document.getElementById('current-category-title').innerText = catTitle;
+            container.innerHTML = '';
+            
+            productsDB.filter(p => p.cat === catId).forEach(p => {
+                let badge = p.meme ? `<span style="position:absolute; top:10px; left:10px; background:var(--text-gold); color:#000; padding:2px 8px; font-size:0.7rem; font-weight:bold; border-radius:4px;">${p.meme}</span>` : '';
+                container.innerHTML += `
+                    <div class="prod-card animate__animated animate__fadeInUp">
+                        ${badge}
+                        <div class="img-wrapper"><img src="${p.img}" alt="${p.name}"></div>
+                        <div class="info-row">
+                            <h3>${p.name}</h3>
+                            <span class="price">${p.price.toLocaleString()} د.ع</span>
+                        </div>
+                        <div class="actions">
+                            <button class="btn-main" onclick="openNotes('${p.notes}')">المكونات</button>
+                            <button class="btn-main btn-gold" onclick="openQtyModal('${p.name}', ${p.price}, '${p.img}')">شراء</button>
+                        </div>
+                    </div>`;
+            });
+            area.style.display = 'block';
+            area.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openQtyModal(name, price, img) {
+            tempProduct = { name, price, img };
+            document.getElementById('qty-prod-name').innerText = name;
+            document.getElementById('qty-prod-price').innerText = price.toLocaleString() + ' د.ع';
+            currentQty = 1;
+            document.getElementById('qty-display-num').innerText = currentQty;
+            document.getElementById('qty-overlay').classList.add('active');
+        }
+
+        function updateQty(change) {
+            currentQty += change;
+            if(currentQty < 1) currentQty = 1;
+            document.getElementById('qty-display-num').innerText = currentQty;
+        }
+
+        function confirmAddToCart() {
+            let exist = cart.find(x => x.name === tempProduct.name);
+            if(exist) exist.qty += currentQty;
+            else cart.push({...tempProduct, qty: currentQty});
+            updateCartCounter();
+            closeAllPopups();
+        }
+
+        function updateCartCounter() {
+            document.getElementById('cart-count').innerText = cart.reduce((a,b)=>a+b.qty,0);
+        }
+
+        function openCartModal() {
+            const empty = document.getElementById('empty-cart-view');
+            const full = document.getElementById('full-cart-view');
+            const list = document.getElementById('cart-items-list');
+            
+            if(cart.length === 0) {
+                empty.style.display = 'block'; full.style.display = 'none';
+            } else {
+                empty.style.display = 'none'; full.style.display = 'block';
+                list.innerHTML = '';
+                let total = 0;
+                cart.forEach((item, i) => {
+                    total += item.price * item.qty;
+                    list.innerHTML += `
+                        <div class="cart-item-card">
+                            <div class="cart-item-img"><img src="${item.img}"></div>
+                            <div class="cart-item-details">
+                                <div class="cart-item-title">${item.name}</div>
+                                <div class="cart-item-price">${item.price.toLocaleString()} د.ع</div>
+                                <div class="cart-item-qty">العدد: ${item.qty}</div>
+                            </div>
+                            <div class="cart-item-remove" onclick="cart.splice(${i},1); updateCartCounter(); openCartModal();">
+                                <i class="fas fa-trash-alt"></i>
+                            </div>
+                        </div>`;
+                });
+                document.getElementById('cart-grand-total').innerText = total.toLocaleString() + ' د.ع';
+            }
+            document.getElementById('cart-overlay').classList.add('active');
+        }
+
+        function closeAllPopups() { document.querySelectorAll('.overlay').forEach(e => e.classList.remove('active')); }
+        function openNotes(n) { document.getElementById('notes-content').innerText = n; document.getElementById('notes-overlay').classList.add('active'); }
+
+        function getGPSLocation() {
+            if(navigator.geolocation) {
+                const btn = document.getElementById('btn-gps');
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحديد...';
+                navigator.geolocation.getCurrentPosition(p => {
+                    userLocationLink = `https://www.google.com/maps?q=${p.coords.latitude},${p.coords.longitude}`;
+                    btn.innerHTML = '<i class="fas fa-check"></i> تم تحديد الموقع ✅';
+                    document.getElementById('cust-addr').value = 'تم التحديد عبر GPS';
+                }, () => { alert('يرجى تفعيل الموقع'); btn.innerHTML = 'فشل التحديد'; });
+            }
+        }
+
+        // دالة الإرسال إلى تلجرام
+        async function sendToTelegram() {
+            const name = document.getElementById('cust-name').value;
+            const phone = document.getElementById('cust-phone').value;
+            const addr = document.getElementById('cust-addr').value;
+            const submitBtn = document.getElementById('submit-btn');
+
+            if(cart.length === 0) return;
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = "جاري إرسال الطلب...";
+
+            let orderList = "";
+            cart.forEach(item => {
+                orderList += `• ${item.name} | العدد: ${item.qty} | السعر: ${item.price.toLocaleString()} د.ع\n`;
+            });
+
+            const message = `
+🛍️ *طلب جديد من متجر شمس الخليج*
+----------------------------
+👤 *الزبون:* ${name}
+📞 *الهاتف:* ${phone}
+📍 *العنوان:* ${addr}
+${userLocationLink ? `🗺️ *الموقع:* [اضغط هنا](${userLocationLink})` : ""}
+
+📋 *الطلبات:*
+${orderList}
+----------------------------
+💰 *الإجمالي الكلي:* ${document.getElementById('cart-grand-total').innerText}
+            `;
+
+            const url = `https://api.telegram.org/bot${TG_TOKEN}/sendMessage`;
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: TG_CHAT_ID,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+
+                if(response.ok) {
+                    alert('تم استلام طلبك بنجاح! سنتواصل معك قريباً.');
+                    cart = [];
+                    updateCartCounter();
+                    closeAllPopups();
+                    document.getElementById('checkout-form').reset();
+                } else {
+                    alert('حدث خطأ في الإرسال، يرجى المحاولة مرة أخرى.');
+                }
+            } catch (error) {
+                alert('فشل الاتصال بالخادم.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fab fa-telegram-plane"></i> إرسال الطلب الآن';
+            }
+        }
+        
+    </script>
+<style>
+    .wa-float-button {
+        position: fixed;
+        bottom: 40px;   /* تم رفعه للأعلى قليلاً (من 20 إلى 40) */
+        right: 25px;    /* إزاحة بسيطة عن الحافة اليمنى */
+        width: 60px;
+        height: 60px;
+        background-color: #25D366;
+        color: #FFF;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        z-index: 10000; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        animation: wa-pulse 2s infinite;
+    }
+
+    @keyframes wa-pulse {
+        0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+        70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+
+    .wa-float-button:hover {
+        transform: scale(1.1) translateY(-5px); /* يرتفع قليلاً عند تمرير الماوس */
+        background-color: #1ebc57;
+    }
+
+    /* تحسين الظهور على الهواتف */
+    @media screen and (max-width: 480px) {
+        .wa-float-button {
+            width: 58px;
+            height: 58px;
+            bottom: 35px;
+            right: 20px;
+        }
+    }
+</style>
+
+<a href="https://wa.me/9647833085351" class="wa-float-button" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+</body>
+</html>
